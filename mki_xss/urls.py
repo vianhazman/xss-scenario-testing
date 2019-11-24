@@ -19,9 +19,15 @@ from django.urls import path
 from blog import views
 from django.urls import path
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('', views.PostList.as_view(), name='home'),
+    path('register/', views.RegisterView.as_view(), name='register'),
+    path('login/', views.LoginView.as_view(), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('admin/', admin.site.urls),
+    path('newpost/', views.new_post, name='new_post'),
     path('<slug:slug>/', views.post_detail, name='post_detail'),
+
 ]
